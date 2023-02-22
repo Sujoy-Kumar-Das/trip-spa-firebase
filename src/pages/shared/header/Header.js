@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../contexts/authProviderContext/AuthContextProvider";
 import "./header.css";
 const Header = () => {
+  const {user,logOut} = useContext(AuthContext)
+  console.log(user)
+  const logOutUser = ()=>{
+        logOut()
+        .then(()=>{})
+        .catch(error=>console.log(error))
+  }
   return (
     <div className=" flex justify-center pt-2">
       <div className="navbar bg-base-0 text-white w-full lg:w-4/5">
         <div className="flex-1">
-          
-
           <div className="dropdown  ">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <svg
@@ -67,7 +74,8 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-                <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                
+                {user && user?.photoURL ? <img src={user?.photoURL} alt="" />:<div className="m-3 "><FaUser></FaUser></div>}
               </div>
             </label>
             <ul
@@ -75,13 +83,14 @@ const Header = () => {
               className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 text-black"
             >
               <li>
-                <Link className="justify-between">
+                <Link to='/userInfo' className="justify-between mb-1">
                   Profile
-                  <span className="badge">New</span>
                 </Link>
               </li>
               <li>
-                <Link>Logout</Link>
+                {user && user?.uid ? <button onClick={logOutUser}>Logout</button>:<Link to='/login'>Login</Link>}
+                
+                
               </li>
             </ul>
           </div>
