@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import LeftsideDetail from './leftSideDetail/LeftsideDetail';
+import { Link } from 'react-router-dom';
 import RightSideSwiper from './rightSideSwiper/RightSideSwiper';
 
 const Home = () => {
@@ -15,14 +15,15 @@ const Home = () => {
     setSelectedPlace(userPlace)
     console.log(selectedPlace)
   }
-  console.log(selectedPlace)
+  // console.log(selectedPlace)
   return (
     <div className=" lg:grid grid-cols-3 mt-10">
       <div className=' text-white flex justify-center  lg:p-20 px-10 '>
         <div>
         <h2 className='text-5xl mb-5'>{selectedPlace?.placeName}</h2>
-        {selectedPlace?.detail.length > 200 ? <p>{selectedPlace?.detail.slice(0,200)+ '...'}</p>:<p>{selectedPlace?.detail}</p>}
-        {selectedPlace && <button className="btn bg-orange-500 mt-5">Show Detail</button>}
+        {selectedPlace?.detail.length > 200 ? <p className=' text-justify'>{selectedPlace?.detail.slice(0,200)+ '...'}</p>:<p>{selectedPlace?.detail}</p>}
+         
+         {selectedPlace &&<Link to={`booking/${selectedPlace?.id}`}><button className="btn bg-orange-500 mt-5">Show Detail</button></Link>}
         </div>
       </div>
       <div className=' col-span-2 mt-24'>
