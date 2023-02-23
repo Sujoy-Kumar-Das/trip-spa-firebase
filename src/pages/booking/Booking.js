@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import "react-calendar/dist/Calendar.css";
 const Booking = () => {
     const place = useLoaderData();
     // const hotels = places.hotels;
     // console.log(hotels)
+    console.log(place.id)
     const [date, setDate] = useState(new Date());
     const onChange = date =>{
         setDate(date)
@@ -18,7 +19,8 @@ const Booking = () => {
             </div>
             <div className=' '>
             <Calendar onChange={onChange} value={date} />
-            <button className=' btn bg-sky-600 mt-5 w-full hover:text-sky-600'>Start Booking</button>
+            <Link to={`/hotel/${place.id}`} className=' btn bg-sky-600 mt-5 w-full hover:text-sky-600'><button >Start Booking</button></Link>
+            
             </div>
         </div>
     );

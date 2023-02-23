@@ -38,7 +38,13 @@ export const router = createBrowserRouter([
                 element:<LeftsideDetail></LeftsideDetail>
             },  
             {
-                path:'/hotel',
+                path:'/hotel/:id',
+                loader:({params})=>{
+                    console.log(params.id);
+                    const id = params.id;
+                    return fetch(`http://localhost:5000/place/${id}`)
+                    
+                },
                 element:<Hotel></Hotel>
             },{
                 path:'/login',

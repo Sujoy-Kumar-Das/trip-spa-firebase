@@ -23,7 +23,7 @@ const Home = () => {
         <h2 className='text-5xl mb-5'>{selectedPlace?.placeName}</h2>
         {selectedPlace?.detail.length > 200 ? <p className=' text-justify'>{selectedPlace?.detail.slice(0,200)+ '...'}</p>:<p>{selectedPlace?.detail}</p>}
          
-         {selectedPlace &&<Link to={`booking/${selectedPlace?.id}`}><button className="btn bg-orange-500 mt-5">Show Detail</button></Link>}
+         {selectedPlace &&<Link to={`/booking/${selectedPlace?.id}`}><button className="btn bg-orange-500 mt-5">Show Detail</button></Link>}
         </div>:<p className='text-2xl mt-5'>Please select a place </p>}
       </div>
       <div className=' col-span-2 mt-24'>

@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/authProviderContext/AuthContextProvider";
-import "./header.css";
 const Header = () => {
   const {user,logOut} = useContext(AuthContext)
   console.log(user)
